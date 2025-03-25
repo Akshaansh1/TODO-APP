@@ -1,12 +1,14 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 const { taskModel } = require("./models/taskModel");
-const app = express();
+const cors = require("cors");
 
 dotenv.config();
+const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.json({ msg: "Hello" });
