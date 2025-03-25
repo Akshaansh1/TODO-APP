@@ -1,4 +1,4 @@
-# Task Management API
+# Task Management Application
 
 ## Overview
 This project is built using the MERN stack. Currently, the backend is implemented using Node.js, Express, and MongoDB. The frontend is being developed using React and Tailwind CSS, with further enhancements planned.
