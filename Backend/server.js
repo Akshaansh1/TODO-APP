@@ -39,11 +39,35 @@ app.post("/tasks", async (req, res) => {
 });
 
 app.put("/tasks/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateData = req.body;
+        const updatedTask = await taskModel.findOneAndUpdate({ id }, updateData, { new: true });
+
+        if (!updatedTask) {
+            return res.status(404).json({ error: "Task not found" });
+        }
+
+        res.json({ msg: "Task Updated", updatedTask });
+    } 
     
+    catch (e) {
+        console.error("Error:", e);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 });
 
 app.delete("/tasks/:id", async (req, res) => {
+    try {
+        const deletedTask = await taskModel.findOneAndDelete({ id: req.params.id });
+        if (!deletedTask) return res.status(404).json({ error: "Task not found" });
+        res.json({ msg: "Task Deleted", deletedTask });
+    } 
     
+    catch (e) {
+        console.error("Error:", e);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 });
 
 async function start() {
