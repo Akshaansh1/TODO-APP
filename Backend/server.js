@@ -1,16 +1,41 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const { taskModel } = require("./models/taskModel");
 const app = express();
+
+dotenv.config();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
     res.json({ msg: "Hello" });
 });
 
 app.get("/tasks", async (req, res) => {
+    try {
+        const tasks = await taskModel.find({});
+        res.json(tasks);
+    } 
     
+    catch (e) {
+        console.error("Error:", e);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 });
 
 app.post("/tasks", async (req, res) => {
+    try {
+        const { id, title, description } = req.body;
+        const newTask = new taskModel({ id, title, description });
+        await newTask.save();
+        res.status(201).json({ msg: "Task Created", task: newTask });
+    } 
     
+    catch (e) {
+        console.error("Error:", e);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 });
 
 app.put("/tasks/:id", async (req, res) => {
@@ -21,4 +46,14 @@ app.delete("/tasks/:id", async (req, res) => {
     
 });
 
-app.listen(3000 , () => {console.log("Listening to Port 3000")})
+async function start() {
+    try {
+        await mongoose.connect(process.env.MONGO_URL);
+        console.log("Connected to MongoDB");
+        app.listen(3000, () => console.log("Listening on Port 3000"));
+    } catch (e) {
+        console.log("Error in connecting", e);
+    }
+}
+
+start();
