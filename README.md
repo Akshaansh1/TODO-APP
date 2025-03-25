@@ -1,80 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management API Documentation</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; padding: 20px; }
-        h1, h2, h3 { color: #333; }
-        code { background: #f4f4f4; padding: 5px; border-radius: 5px; }
-        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
-    </style>
-</head>
-<body>
-    <h1>Task Management API</h1>
-    <p>This project is built using the MERN stack. Currently, the backend is implemented using Node.js, Express, and MongoDB. The frontend is being developed using React and Tailwind CSS, with further enhancements planned.</p>
+# Task Management App
 
-    <h2>Installation & Setup</h2>
-    <h3>Prerequisites</h3>
-    <ul>
-        <li>Node.js installed</li>
-        <li>MongoDB database (local or cloud instance)</li>
-    </ul>
+## Overview
+This project is built using the MERN stack. Currently, the backend is implemented using Node.js, Express, and MongoDB. The frontend is being developed using React and Tailwind CSS, with further enhancements planned.
 
-    <h3>Setup Steps</h3>
-    <pre>
-    git clone &lt;your-repo-url&gt;
-    cd &lt;your-repo-folder&gt;
-    cd Backend
-    npm install
-    </pre>
+## Installation & Setup
 
-    <p>Create a <code>.env</code> file in the <code>Backend</code> directory and set your MongoDB connection string:</p>
-    <pre>MONGO_URL=your_mongodb_connection_string</pre>
+### Prerequisites
+- Node.js installed
+- MongoDB database (local or cloud instance)
 
-    <p>Start the backend server:</p>
-    <pre>npm start</pre>
-    <p>The server will run on <code>http://localhost:3000</code>.</p>
+### Setup Steps
+1. Clone the repository:
+   ```sh
+   git clone <your-repo-url>
+   cd <your-repo-folder>
+   ```
+2. Navigate to the backend folder:
+   ```sh
+   cd Backend
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
+4. Create a `.env` file in the `Backend` directory and set your MongoDB connection string:
+   ```sh
+   MONGO_URL=your_mongodb_connection_string
+   ```
+5. Start the backend server:
+   ```sh
+   npm start
+   ```
+   The server will run on `http://localhost:3000`.
 
-    <h2>API Endpoints</h2>
-    <h3>1. Get All Tasks</h3>
-    <p><strong>Method:</strong> GET</p>
-    <p><strong>URL:</strong> <code>/tasks</code></p>
-    <pre>
-    Response:
-    [
-      { "id": 1, "title": "Task 1", "description": "Sample task" }
-    ]
-    </pre>
+## API Endpoints
 
-    <h3>2. Create a Task</h3>
-    <p><strong>Method:</strong> POST</p>
-    <p><strong>URL:</strong> <code>/tasks</code></p>
-    <p><strong>Request Body:</strong></p>
-    <pre>
-    {
-      "id": 1,
-      "title": "New Task",
-      "description": "Task description"
-    }
-    </pre>
+### 1. Get All Tasks
+- **Method:** `GET`
+- **URL:** `/tasks`
+- **Response:**
+  ```json
+  [
+    { "id": 1, "title": "Task 1", "description": "Sample task" }
+  ]
+  ```
 
-    <h2>Testing the API with Postman</h2>
-    <p>Download and install Postman from <a href="https://www.postman.com/downloads/">here</a>.</p>
-    <h3>Steps to Test</h3>
-    <ul>
-        <li>Start your backend server: <code>npm start</code></li>
-        <li>Use the following endpoints in Postman:</li>
-        <ul>
-            <li><strong>GET:</strong> Retrieve all tasks from <code>http://localhost:3000/tasks</code></li>
-            <li><strong>POST:</strong> Create a task using <code>/tasks</code> with JSON body</li>
-            <li><strong>PUT:</strong> Update a task with <code>/tasks/:id</code></li>
-            <li><strong>DELETE:</strong> Delete a task with <code>/tasks/:id</code></li>
-        </ul>
-    </ul>
+### 2. Create a Task
+- **Method:** `POST`
+- **URL:** `/tasks`
+- **Request Body:**
+  ```json
+  {
+    "id": 1,
+    "title": "New Task",
+    "description": "Task description"
+  }
+  ```
+- **Response:**
+  ```json
+  { "msg": "Task Created", "task": { ... } }
+  ```
 
-    <h2>Frontend Development</h2>
-    <p>The frontend is being developed using React and Tailwind CSS. More features will be added soon.</p>
-</body>
-</html>
+## Testing the API with Postman
+
+### **1. Install Postman**
+- Download and install Postman from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
+
+### **2. Start Your Backend Server**
+- Run your backend server:
+  ```sh
+  cd Backend
+  npm start
+  ```
+  Your API should be running at `http://localhost:3000`.
+
+### **3. Using Postman to Test API Endpoints**
+
+#### **Get All Tasks**
+- **Method:** `GET`
+- **URL:** `http://localhost:3000/tasks`
+
+#### **Create a Task**
+- **Method:** `POST`
+- **URL:** `http://localhost:3000/tasks`
+- **Headers:**
+  - `Content-Type: application/json`
+- **Body (JSON):**
+  ```json
+  {
+    "id": "1",
+    "title": "New Task",
+    "description": "This is a sample task"
+  }
+  ```
+
+#### **Update a Task**
+- **Method:** `PUT`
+- **URL:** `http://localhost:3000/tasks/1`
+- **Headers:**
+  - `Content-Type: application/json`
+- **Body (JSON):**
+  ```json
+  {
+    "title": "Updated Task",
+    "description": "Updated description"
+  }
+  ```
+
+#### **Delete a Task**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:3000/tasks/1`
+
+## Frontend Development
+The frontend is being developed using React and Tailwind CSS. More features will be added soon.
