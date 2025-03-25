@@ -12,7 +12,7 @@ This project is built using the MERN stack. Currently, the backend is implemente
 ### Setup Steps
 1. Clone the repository:
    ```sh
-   git clone [<your-repo-url>](https://github.com/Akshaansh1/TODO-APP.git)
+   git clone https://github.com/Akshaansh1/TODO-APP.git
    cd TODO-APP
    ```
 2. Navigate to the backend folder:
